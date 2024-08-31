@@ -1,0 +1,1 @@
+helm upgrade --install --wait podinfo  oci://ghcr.io/stefanprodan/charts/podinfo

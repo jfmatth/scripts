@@ -1,0 +1,16 @@
+ingress:
+  enabled: true
+  className: ""
+  additionalLabels: {}
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: k3s-1.mshome.net
+      paths:
+        - path: /podinfo
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
