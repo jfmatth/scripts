@@ -1,0 +1,21 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    # Settings for Traefik Helm chart
+    dashboard:
+    # Toggle Traefik dashboard for monitoring
+      enabled: true  
+    ports:
+      traefik:
+      # Open up Traefik dashboard port 9000
+        expose: true  
+        # Caution: Not recommended for production environments
+        # Intended for local traefik dashboards only
+    logs:
+      access:
+      # Turn on access logs for Traefik
+        enabled: true  

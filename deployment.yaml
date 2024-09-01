@@ -1,19 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: podinfo
+  name: my-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: podinfo
+      app: my-app
   template:
     metadata:
       labels:
-        app: podinfo
+        app: my-app
     spec:
       containers:
-      - name: podinfo
-        image: ghcr.io/stefanprodan/podinfo
+      - name: my-app
+        image: nginx
         ports:
         - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app
+spec:
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

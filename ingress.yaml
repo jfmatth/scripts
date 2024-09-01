@@ -1,18 +1,51 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: stripprefix
+  namespace: default
+spec:
+  stripPrefix:
+    prefixes:
+      - "/test"
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: podinfo
-  # annotations:
-  #   nginx.ingress.kubernetes.io/rewrite-target: /
+  name: my-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.middlewares: default-stripprefix@kubernetescrd
 spec:
   rules:
-  - host: k3s-1.mshome.net
   - http:
       paths:
-      - path: /podinfo
-        pathType: Prefix
-        backend:
-          service:
-            name: podinfo
-            port:
-              number: 80
+        - path: /test
+          pathType: Prefix
+          backend:
+            service:
+              name: my-app
+              port:
+                number: 80
+
+
+
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: my-ingress
+#   # annotations:
+#   #   nginx.ingress.kubernetes.io/rewrite-target: /
+# spec:
+#   rules:
+#   - http:
+#       paths:
+#       - path: /test/
+
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: my-app
+#             port:
+#               number: 80
