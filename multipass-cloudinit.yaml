@@ -1,0 +1,17 @@
+users:
+  - default
+  - name: jfmatth
+    sudo:  ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDvZqoI5QcOz5AHwXzad5pUSLyo/XlndVFCqiGcflNUE8bytryiE2JB9g+wz685iC2VeLFX3yqAJFz1CkT+FvpunpAJ8wIswKM+iUnLRYKeC8mAs3FCkS+Q4csHMG5GdMsTYduM31EIRXJ4vgwXOc3tYsnIBqzqWJTZN9MPFsWX4SY+mrU1kHNWGM1zaxnOPlDM6XVjiFRps61QU6uf8eibSVQyU7JokuFftB5saA8PPMAhHeOdUJirWNMpaNg6/7oQ0ihhfpC47YUCNKi8nMO5W9eBWK6dAbi3LX6wQHxcIJgHgJw5k8d2SovBFpjbRgKibk669I5c/iQWoFTRtMcv jfmatth@hpenvy-jfmatth
+    shell: /bin/bash
+  - name: jmatthew
+    sudo:  ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCxoZz2d/850hLgSDNJqGF5MytFUJTRrPNSAA21uqCze77Tg3jKj2KwAX1lbs2wvx+O9md2TImImHJCBKTfiggXl6vLcfoqAtGWHroSkx3pEYS6IHDlLm/A1IxIwLElVVzqK1hUjhwZJxGVTjm0rpGUofvWlCSHABej2BNxgAoupoc8rNtm5IDDeQ5dX2dODed6I/Uc+ICeZDuD5P58i/U6y6c2YZCvJ2mkcL5wh3bDIdmp6SwWf1p2aDuX75HvI61oqIovoaxI4kHZbVyZATOEGn8DUAmVdfC/6a6Jf74i4NMmpz106hf6GsUmCQ4kbjjeG2yJyYvq/xRrexKCFT1uyw03BWOzWx9MoqdOJ++t/B+uLB2/h7o/H8ZvOa06qUjbH82VqKnRN4N4h9U3LYbzJ+4Svx8U84+GEHbCZtGwle9usq+aBVoz/EkPpq0V05UOBZeGgMd05qmKnVBHHgBZIKhADNoeGiKUugSIqab646aEp88DsDAWmakWzTw4bKM= jmatthew@PS18-4JXLYW3
+    shell: /bin/bash
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+packages:
+  - linux-azure
