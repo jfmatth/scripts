@@ -12,7 +12,7 @@ IF "%2"=="" GOTO help
 
 
 :: DEFAULTS
-SET cloudinit=multipass-cloudinit.yaml
+SET cloudinit=%~dp0\multipass-cloudinit.yaml
 SET name=%1
 SET image=%3
 
