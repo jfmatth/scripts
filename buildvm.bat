@@ -22,14 +22,14 @@ GOTO %2
 :nano
     SET cpu=1
     SET mem=1g
-    SET disk=25gb
+    SET disk=10gb
 
     GOTO launch
 
 :std
     SET cpu=1
     SET mem=2g
-    SET disk=25gb
+    SET disk=10gb
     
     GOTO launch
 
@@ -39,7 +39,7 @@ GOTO %2
 :big
     SET cpu=2
     SET mem=4g
-    SET disk=25gb
+    SET disk=10gb
     
     GOTO launch
 
