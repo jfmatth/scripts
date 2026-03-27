@@ -12,10 +12,52 @@ set CI=C:\users\jmatthew\dev\scripts\multipass-cloudinit.yaml
 IF "%1"=="" GOTO help
 IF "%2"=="" GOTO help
 
+
+:: DEFAULTS
+SET cloudinit=multipass-cloudinit.yaml
+SET name=%1
+SET image=%3
+
 :: CMD's case statement
 GOTO %2
 
 :nano
+    SET cpu=1
+    SET mem=1g
+    SET disk=25gb
+
+    GOTO launch
+
+:std
+    SET cpu=1
+    SET mem=2g
+    SET disk=25gb
+    
+    GOTO launch
+
+    @REM @REM ECHO Building standard sized VM (1cpu x 2g x 25g) %1 / Importing keys / updating files, Stand by...
+    @REM @REM multipass launch --name %1 --cpus=1 --memory=2g --disk=25gb %3 --cloud-init multipass-cloudinit.yaml
+    @REM GOTO cleanup
+:big
+    SET cpu=2
+    SET mem=4g
+    SET disk=25gb
+    
+    GOTO launch
+
+    @REM ECHO Building big sized VM (2cpu x 4g x 50g) %1 / Importing keys / updating files, Stand by...
+    @REM multipass launch --name %1 --cpus=2 --memory=4g --disk=50gb %3 --cloud-init multipass-cloudinit.yaml
+    @REM GOTO cleanup
+:huge
+    SET cpu=4
+    SET mem=8g
+    SET disk=50gb
+    
+    GOTO launch
+
+    @REM ECHO Building HUGE sized VM (4cpu x 8g x 50g) %1 / Importing keys / updating files, Stand by...
+    @REM multipass launch --name %1 --cpus=4 --memory=8g --disk=50gb %3 --cloud-init multipass-cloudinit.yaml
+    @REM GOTO cleanup
     ECHO Building nano sized VM (1cpu x 1g x 25g) %1 / Importing keys / updating files, Stand by...
     multipass launch --name %1 --cpus=1 --memory=1g --disk=25gb %3 --cloud-init %CI%
     GOTO cleanup
@@ -32,8 +74,13 @@ GOTO %2
     multipass launch --name %1 --cpus=4 --memory=8g --disk=50gb %3 --cloud-init %CI%
     GOTO cleanup
 
+:: if we get here, we don't have a type to launch
+:fail
+    GOTO help
 
-:cleanup
+:launch
+    ECHO Building (%cpu% x %mem% x %disk%) named %name%
+    multipass launch --name %name% --cpus=%cpu% --memory=%mem% --disk=%disk% --cloud-init %cloudinit%  %image%
     
 GOTO end
 
