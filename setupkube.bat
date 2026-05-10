@@ -1,1 +1,0 @@
-set KUBECONFIG=kubeconfig
